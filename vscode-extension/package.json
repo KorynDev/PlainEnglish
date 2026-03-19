@@ -1,0 +1,46 @@
+{
+  "name": "plainenglish",
+  "displayName": "PlainEnglish Language",
+  "description": "Syntax highlighting and language support for PlainEnglish (.ple) files",
+  "version": "1.0.0",
+  "publisher": "plainenglish",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "plainenglish",
+        "aliases": [
+          "PlainEnglish",
+          "plainenglish",
+          "ple"
+        ],
+        "extensions": [
+          ".ple"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icon.png",
+          "dark": "./icon.png"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "plainenglish",
+        "scopeName": "source.plainenglish",
+        "path": "./syntaxes/plainenglish.tmLanguage.json"
+      }
+    ]
+  },
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/plainenglish/plainenglish-vscode"
+  },
+  "license": "MIT"
+}

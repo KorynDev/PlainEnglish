@@ -1,0 +1,11 @@
+Note This program finds and prints every even number from one to one hundred.
+
+Let number be 1.
+
+While number is less than or equal to 100, repeat.
+  Let remainder be number modulo 2.
+  If remainder is equal to 0, then.
+    Display number.
+  End if.
+  Set number to number plus 1.
+End while.

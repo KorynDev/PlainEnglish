@@ -1,0 +1,15 @@
+{
+    "comments": {
+        "lineComment": "Note "
+    },
+    "brackets": [],
+    "autoClosingPairs": [],
+    "surroundingPairs": [],
+    "folding": {
+        "markers": {
+            "start": "^\\s*(If|Repeat|While|For each|Define)\\b",
+            "end": "^\\s*(End if|End repeat|End while|End for each|End function)\\b"
+        }
+    },
+    "wordPattern": "[a-zA-Z][a-zA-Z0-9 ]*"
+}

@@ -1,0 +1,104 @@
+{
+    "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "PlainEnglish",
+    "scopeName": "source.plainenglish",
+    "fileTypes": [
+        "ple"
+    ],
+    "patterns": [
+        {
+            "include": "#comment"
+        },
+        {
+            "include": "#block-end"
+        },
+        {
+            "include": "#block-start"
+        },
+        {
+            "include": "#keyword"
+        },
+        {
+            "include": "#operator"
+        },
+        {
+            "include": "#comparison"
+        },
+        {
+            "include": "#boolean"
+        },
+        {
+            "include": "#number"
+        },
+        {
+            "include": "#punctuation"
+        },
+        {
+            "include": "#function-keyword"
+        },
+        {
+            "include": "#io-keyword"
+        },
+        {
+            "include": "#list-keyword"
+        }
+    ],
+    "repository": {
+        "comment": {
+            "name": "comment.line.plainenglish",
+            "match": "(?i)^\\s*Note\\b.*$"
+        },
+        "block-end": {
+            "name": "keyword.control.end.plainenglish",
+            "match": "(?i)\\b(End if|End repeat|End while|End for each|End function)\\b"
+        },
+        "block-start": {
+            "name": "keyword.control.plainenglish",
+            "match": "(?i)\\b(If|Otherwise if|Otherwise|Repeat|While|For each|Define a function called)\\b"
+        },
+        "keyword": {
+            "name": "keyword.other.plainenglish",
+            "match": "(?i)\\b(Let|Set|to|be|then|times|repeat|in|that takes|with|and store it in|a list containing|an empty list|Give back|Call)\\b"
+        },
+        "function-keyword": {
+            "name": "keyword.declaration.plainenglish",
+            "match": "(?i)\\b(Define a function called|End function|Give back|Call|the result of calling)\\b"
+        },
+        "io-keyword": {
+            "name": "support.function.plainenglish",
+            "match": "(?i)\\b(Display|Ask|and store it in)\\b"
+        },
+        "list-keyword": {
+            "name": "support.type.plainenglish",
+            "match": "(?i)\\b(Add|Remove|from|to|the length of|item|of|a list containing|an empty list)\\b"
+        },
+        "operator": {
+            "name": "keyword.operator.plainenglish",
+            "match": "(?i)\\b(plus|minus|times|divided by|modulo)\\b"
+        },
+        "comparison": {
+            "name": "keyword.operator.comparison.plainenglish",
+            "match": "(?i)\\b(is equal to|is not equal to|is greater than or equal to|is less than or equal to|is greater than|is less than|is true|is false|and|or)\\b"
+        },
+        "boolean": {
+            "name": "constant.language.plainenglish",
+            "match": "(?i)\\b(true|false)\\b"
+        },
+        "number": {
+            "name": "constant.numeric.plainenglish",
+            "match": "\\b\\d+(\\.\\d+)?\\b"
+        },
+        "punctuation": {
+            "patterns": [
+                {
+                    "name": "punctuation.terminator.plainenglish",
+                    "match": "\\."
+                },
+                {
+                    "name": "punctuation.separator.plainenglish",
+                    "match": ","
+                }
+            ]
+        }
+    }
+}

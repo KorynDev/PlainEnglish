@@ -1,0 +1,83 @@
+Note Comprehensive demo of every PlainEnglish feature.
+
+Note Variables.
+Let name be PlainEnglish.
+Let version be 1.
+Let pi be 3.14.
+Let ready be true.
+
+Display Welcome to name version.
+
+Note Arithmetic.
+Let a be 10.
+Let b be 3.
+Set total to a plus b.
+Set diff to a minus b.
+Set product to a times b.
+Set quotient to a divided by b.
+Set leftover to a modulo b.
+
+Display total.
+Display diff.
+Display product.
+Display quotient.
+Display leftover.
+
+Note Conditions.
+If total is greater than 10, then.
+  Display The total is greater than 10.
+End if.
+
+If ready is true, then.
+  Display name is awesome.
+Otherwise.
+  Display name is not awesome.
+End if.
+
+Note Counted loop.
+Let counter be 0.
+Repeat 5 times.
+  Set counter to counter plus 1.
+  Display Iteration counter.
+End repeat.
+
+Note While loop.
+Let countdown be 3.
+While countdown is greater than 0, repeat.
+  Display countdown.
+  Set countdown to countdown minus 1.
+End while.
+Display Go.
+
+Note Lists.
+Let colours be a list containing red, green, blue.
+Add purple to colours.
+Remove blue from colours.
+
+Display colours.
+For each colour in colours.
+  Display colour.
+End for each.
+
+Set size to the length of colours.
+Display size.
+
+Set pick to item 1 of colours.
+Display pick.
+
+Note Functions.
+Define a function called double that takes x.
+  Let answer be x times 2.
+  Give back answer.
+End function.
+
+Set d to the result of calling double with 21.
+Display d.
+
+Define a function called greet that takes person.
+  Display Nice to meet you, person.
+End function.
+
+Call greet with World.
+
+Display Demo complete.

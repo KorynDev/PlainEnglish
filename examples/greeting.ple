@@ -1,0 +1,18 @@
+Note This program asks the user for their name and age and prints a personalised greeting.
+
+Ask What is your name and store it in name.
+Ask How old are you and store it in age.
+
+Display Hello, name.
+Display You are age years old.
+
+If age is less than 13, then.
+  Display You are still a kid, enjoy it.
+Otherwise if age is less than 18, then.
+  Display You are a teenager, exciting times ahead.
+Otherwise.
+  Display You are an adult, welcome to the real world.
+End if.
+
+Let birth year be 2026 minus age.
+Display You were probably born around birth year.
