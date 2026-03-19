@@ -452,6 +452,11 @@ def _parse_statement(sentences: List[Tuple[int, str]], idx: int) -> Tuple[Option
 
     first = ltokens[0]
 
+    # --- Use ---
+    if first == 'use':
+        lib_name = ' '.join(tokens[1:])
+        return ast.UseStatement(line=line, library_name=lib_name), idx + 1
+
     # --- Let ---
     if first == 'let':
         return _parse_let(tokens, ltokens, line), idx + 1

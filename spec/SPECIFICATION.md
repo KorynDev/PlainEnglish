@@ -351,10 +351,24 @@ Let age be 25.
 32. A **number literal** is a sequence of digit characters, optionally containing one period for decimals.
 33. A **boolean literal** is the word `true` or `false`.
 34. A **text literal** is any sequence of words not otherwise parsed as a keyword, variable, or number.
+35. A **use statement** begins with `Use` followed by a library name, and ends with a period.
 
 ---
 
-## 10. Error Messages
+## 10. Libraries
+
+**Syntax rule:** `Use <library name>.` 
+
+Loads native Python functions from `libs/<library name>_lib.py`. These functions are then available to the `Call` and `the result of calling` statements just like user-defined functions.
+
+**Standard Libraries:**
+- **math:** `round`, `floor`, `ceiling`, `square root`, `power`, `absolute value`, `minimum`, `maximum`
+- **graphics:** Pygame-based drawing (`create window`, `draw rectangle`, `set colour`, etc.)
+- **input:** Pygame-based inputs (`check events`, `is key pressed`, `is mouse pressed`)
+
+---
+
+## 11. Error Messages
 
 | Situation | Message |
 |---|---|

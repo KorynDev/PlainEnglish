@@ -58,7 +58,7 @@
         },
         "keyword": {
             "name": "keyword.other.plainenglish",
-            "match": "(?i)\\b(Let|Set|to|be|then|times|repeat|in|that takes|with|and store it in|a list containing|an empty list|Give back|Call)\\b"
+            "match": "(?i)\\b(Let|Set|to|be|then|times|repeat|in|that takes|with|and store it in|a list containing|an empty list|Give back|Call|Use)\\b"
         },
         "function-keyword": {
             "name": "keyword.declaration.plainenglish",

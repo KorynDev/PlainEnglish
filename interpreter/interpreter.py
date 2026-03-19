@@ -5,7 +5,9 @@ Walks the AST produced by the parser and executes each node.
 """
 
 from __future__ import annotations
-from typing import Any, Dict, List, Optional
+import os
+import importlib.util
+from typing import Any, Dict, List, Optional, Set
 from . import ast_nodes as ast
 from . import errors
 
@@ -63,6 +65,8 @@ class Interpreter:
     def __init__(self):
         self.global_env = Environment()
         self.functions: Dict[str, ast.FunctionDef] = {}
+        self.native_functions: Dict[str, Any] = {}
+        self._loaded_libs: Set[str] = set()
 
     # ------------------------------------------------------------------
     # Public entry point
@@ -85,7 +89,9 @@ class Interpreter:
     # ------------------------------------------------------------------
 
     def _exec(self, stmt: ast.Statement, env: Environment):
-        if isinstance(stmt, ast.LetStatement):
+        if isinstance(stmt, ast.UseStatement):
+            self._exec_use(stmt)
+        elif isinstance(stmt, ast.LetStatement):
             self._exec_let(stmt, env)
         elif isinstance(stmt, ast.SetStatement):
             self._exec_set(stmt, env)
@@ -114,6 +120,40 @@ class Interpreter:
             pass
         else:
             raise errors.unknown_statement(stmt.line)
+
+    # --- Use ---
+    def _exec_use(self, stmt: ast.UseStatement):
+        name = stmt.library_name.lower().replace(' ', '_')
+        if name in self._loaded_libs:
+            return
+
+        # Find libs/ relative to this file's parent directory (PlainEnglish root)
+        project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        libs_dir = os.path.join(project_root, 'libs')
+        module_path = os.path.join(libs_dir, f'{name}_lib.py')
+
+        if not os.path.exists(module_path):
+            raise errors.library_not_found(stmt.library_name, stmt.line)
+
+        # Dynamically load the module
+        try:
+            spec = importlib.util.spec_from_file_location(f"plainenglish.libs.{name}", module_path)
+            if spec is None or spec.loader is None:
+                raise ImportError(f"Cannot create module spec for {module_path}")
+            
+            module = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(module)
+
+            # Register functions
+            if hasattr(module, 'register'):
+                module.register(self)
+            else:
+                raise AttributeError(f"The library '{stmt.library_name}' does not have a register(interpreter) function.")
+
+        except Exception as e:
+            raise errors.library_load_error(stmt.library_name, str(e), stmt.line)
+
+        self._loaded_libs.add(name)
 
     # --- Let ---
     def _exec_let(self, stmt: ast.LetStatement, env: Environment):
@@ -447,6 +487,12 @@ class Interpreter:
 
     def _call_function(self, name: str, arg_nodes: List[Any], env: Environment, line: int) -> Any:
         key = name.lower()
+
+        # Check native functions first
+        if key in self.native_functions:
+            args = [self._eval(a, env, line) for a in arg_nodes]
+            return self.native_functions[key](args, line)
+
         if key not in self.functions:
             raise errors.undefined_function(name, line)
 

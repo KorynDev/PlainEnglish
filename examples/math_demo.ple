@@ -1,0 +1,27 @@
+Note This program demonstrates the math library.
+
+Use math.
+
+Set r to the result of calling round with 3.7.
+Display 3.7 rounded is r.
+
+Set f to the result of calling floor with 3.7.
+Display 3.7 rounded down is f.
+
+Set c to the result of calling ceiling with 3.2.
+Display 3.2 rounded up is c.
+
+Set s to the result of calling square root with 144.
+Display The square root of 144 is s.
+
+Set p to the result of calling power with 2, 10.
+Display 2 to the power of 10 is p.
+
+Set a to the result of calling absolute value with -5.
+Display The absolute value of -5 is a.
+
+Set min to the result of calling minimum with 3, 7.
+Display The minimum of 3 and 7 is min.
+
+Set max to the result of calling maximum with 3, 7.
+Display The maximum of 3 and 7 is max.

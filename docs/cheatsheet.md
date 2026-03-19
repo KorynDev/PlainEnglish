@@ -114,6 +114,23 @@ Set answer to the result of calling double with 5.
 
 ---
 
+## Libraries
+
+Import standard features into your program with `Use`. (Make sure the matching `<name>_lib.py` exists in the `libs/` folder).
+
+| Library | Features |
+|---|---|
+| **math** | `round`, `floor`, `ceiling`, `square root`, `power`, `absolute value`, `minimum`, `maximum` |
+| **graphics** | `create window`, `set background`, `draw rectangle`, `draw circle`, `update display`, `wait`, `close window` |
+| **input** | `check events`, `is key pressed`, `mouse position`, `is mouse pressed` |
+
+```
+Use math.
+Set answer to the result of calling square root with 64.
+```
+
+---
+
 ## Comments
 
 ```

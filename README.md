@@ -49,6 +49,7 @@ Hello, World
 | **Output** | `Display Hello, name.` |
 | **Functions** | `Define a function called greet that takes person.` |
 | **Lists** | `Let colours be a list containing red, green, blue.` |
+| **Libraries** | `Use math.` |
 
 ---
 
@@ -85,6 +86,13 @@ PlainEnglish/
     even_numbers.ple
     factorial.ple
     demo.ple
+    math_demo.ple
+    graphics_demo.ple
+  libs/                    Standard libraries
+    __init__.py
+    math_lib.py
+    graphics_lib.py
+    input_lib.py
   spec/
     SPECIFICATION.md       Full language specification
   docs/

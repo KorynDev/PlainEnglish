@@ -123,3 +123,18 @@ def empty_program(filename: str) -> PlainEnglishError:
         f'The file "{filename}" appears to be empty. '
         "Try writing some PlainEnglish statements and run it again.",
     )
+
+
+def library_not_found(name: str, line: int) -> RuntimeError_:
+    return RuntimeError_(
+        f'I cannot find a library called "{name}". '
+        'Please make sure there is a matching file in the libs folder.',
+        line,
+    )
+
+
+def library_load_error(name: str, detail: str, line: int) -> RuntimeError_:
+    return RuntimeError_(
+        f'I had trouble loading the library "{name}": {detail}',
+        line,
+    )
