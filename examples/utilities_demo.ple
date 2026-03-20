@@ -1,0 +1,52 @@
+Note Testing the 5 new standard libraries.
+
+Use random.
+Use time.
+Use text.
+Use file.
+Use system.
+
+Note --- Random Test ---.
+Set num to the result of calling random integer with 1, 100.
+Set dec to the result of calling random decimal.
+Let fruits be a list containing "apple", "banana", "cherry".
+Set choice to the result of calling random choice with fruits.
+Display "Random integer:", num.
+Display "Random decimal:", dec.
+Display "Random fruit:", choice.
+
+Note --- Time Test ---.
+Set cur_time to the result of calling current time.
+Set cur_date to the result of calling current date.
+Set timestamp to the result of calling unix timestamp.
+Display "Time:", cur_time.
+Display "Date:", cur_date.
+Display "Timestamp:", timestamp.
+
+Note --- Text Test ---.
+Set upper to the result of calling uppercase with "hello world".
+Set lower to the result of calling lowercase with "HELLO".
+Set len_txt to the result of calling length of text with "apples".
+Set repl to the result of calling replace text with "apples", "p", "b".
+Set parts to the result of calling split text with "a,b,c", ",".
+Display "Uppercase:", upper.
+Display "Lowercase:", lower.
+Display "Length:", len_txt.
+Display "Replaced:", repl.
+Display "First part of split:", item 1 of parts.
+
+Note --- File Test ---.
+Let fname be "demo_file.txt".
+Call write file with fname, "Hello PlainEnglish!".
+Call append file with fname, "\nThis is appended text.".
+Set contents to the result of calling read file with fname.
+Display "File contents:".
+Display contents.
+
+Note --- System Test ---.
+Set os_name to the result of calling operating system.
+Set cwd to the result of calling current directory.
+Display "OS:", os_name.
+Display "Directory:", cwd.
+
+Display "Utilities Demo Complete!".

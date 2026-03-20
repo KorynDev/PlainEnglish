@@ -22,13 +22,17 @@ def _words(sentence: str) -> List[str]:
     """Split a sentence into tokens (words and commas kept separate)."""
     tokens: list[str] = []
     buf: list[str] = []
+    in_quotes = False
     for ch in sentence:
-        if ch == ',':
+        if ch == '"':
+            in_quotes = not in_quotes
+            buf.append(ch)
+        elif ch == ',' and not in_quotes:
             if buf:
                 tokens.append(''.join(buf).strip())
                 buf = []
             tokens.append(',')
-        elif ch == ' ':
+        elif ch == ' ' and not in_quotes:
             if buf:
                 word = ''.join(buf).strip()
                 if word:
@@ -171,11 +175,13 @@ def _parse_expression(tokens: List[str], line: int) -> Any:
             return ast.BooleanLiteral(line=line, value=True)
         if ltok == 'false':
             return ast.BooleanLiteral(line=line, value=False)
+        if tok.startswith('"') and tok.endswith('"') and len(tok) >= 2:
+            return ast.StringLiteral(line=line, value=tok[1:-1])
         return ast.VariableRef(line=line, name=tok)
 
     # --- multi-word: could be a variable name or text literal ---
     # We treat it as a variable reference first; the interpreter will
-    # fall back to text if the variable name doesn't resolve.
+    # throw an error if the variable name doesn't resolve.
     return ast.VariableRef(line=line, name=' '.join(tokens))
 
 
@@ -302,17 +308,8 @@ def _parse_set(tokens: List[str], ltokens: List[str], line: int) -> ast.Statemen
 def _parse_display(tokens: List[str], line: int) -> ast.DisplayStatement:
     """Parse: Display <stuff>."""
     parts_raw = tokens[1:]  # everything after 'Display'
-    # We split on commas to keep comma-separated text natural.
-    # Each token is either a variable ref or text.
-    parts: list[Any] = []
-    for t in parts_raw:
-        if t == ',':
-            parts.append(ast.TextLiteral(line=line, value=","))
-        elif _is_number(t):
-            parts.append(ast.NumberLiteral(line=line, value=_parse_number(t)))
-        else:
-            # Might be a variable; interpreter will resolve or treat as text.
-            parts.append(ast.VariableRef(line=line, name=t))
+    groups = _split_on_commas(parts_raw)
+    parts = [_parse_expression(g, line) for g in groups]
     return ast.DisplayStatement(line=line, parts=parts)
 
 
@@ -322,13 +319,13 @@ def _parse_ask(tokens: List[str], ltokens: List[str], line: int) -> ast.AskState
     if idx == -1:
         raise ParseError(
             'An Ask statement needs "and store it in" followed by a variable name. '
-            'For example: Ask What is your name and store it in name.',
+            'For example: Ask "What is your name?" and store it in name.',
             line,
         )
     prompt_tokens = tokens[1:idx]
     var_name = ' '.join(tokens[idx + 4:])
-    prompt_parts = [ast.VariableRef(line=line, name=t) if not _is_number(t) and t != ',' else
-                    ast.TextLiteral(line=line, value=t) for t in prompt_tokens]
+    groups = _split_on_commas(prompt_tokens)
+    prompt_parts = [_parse_expression(g, line) for g in groups]
     return ast.AskStatement(line=line, prompt_parts=prompt_parts, variable_name=var_name)
 
 

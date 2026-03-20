@@ -1,5 +1,9 @@
 Note This program defines a function that calculates the factorial of a number and prints the factorial of five.
 
+Display "=========================".
+Display "     Factorial Demo      ".
+Display "=========================".
+
 Define a function called factorial that takes n.
   If n is less than or equal to 1, then.
     Give back 1.
@@ -10,4 +14,4 @@ Define a function called factorial that takes n.
 End function.
 
 Set answer to the result of calling factorial with 5.
-Display The factorial of 5 is answer.
+Display "The factorial of 5 is", answer.

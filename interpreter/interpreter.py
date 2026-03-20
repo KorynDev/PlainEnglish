@@ -88,7 +88,7 @@ class Interpreter:
     # Statement execution
     # ------------------------------------------------------------------
 
-    def _exec(self, stmt: ast.Statement, env: Environment):
+    def _exec(self, stmt: ast.Statement, env: Environment) -> None:
         if isinstance(stmt, ast.UseStatement):
             self._exec_use(stmt)
         elif isinstance(stmt, ast.LetStatement):
@@ -122,7 +122,7 @@ class Interpreter:
             raise errors.unknown_statement(stmt.line)
 
     # --- Use ---
-    def _exec_use(self, stmt: ast.UseStatement):
+    def _exec_use(self, stmt: ast.UseStatement) -> None:
         name = stmt.library_name.lower().replace(' ', '_')
         if name in self._loaded_libs:
             return
@@ -161,12 +161,12 @@ class Interpreter:
         env.set(stmt.name, value)
 
     # --- Set ---
-    def _exec_set(self, stmt: ast.SetStatement, env: Environment):
+    def _exec_set(self, stmt: ast.SetStatement, env: Environment) -> None:
         value = self._eval(stmt.value, env, stmt.line)
         env.set(stmt.name, value)
 
     # --- Display ---
-    def _exec_display(self, stmt: ast.DisplayStatement, env: Environment):
+    def _exec_display(self, stmt: ast.DisplayStatement, env: Environment) -> None:
         pieces: list[str] = []
         for part in stmt.parts:
             val = self._eval(part, env, stmt.line)
@@ -189,7 +189,7 @@ class Interpreter:
         return str(val)
 
     # --- Ask ---
-    def _exec_ask(self, stmt: ast.AskStatement, env: Environment):
+    def _exec_ask(self, stmt: ast.AskStatement, env: Environment) -> None:
         prompt_pieces: list[str] = []
         for part in stmt.prompt_parts:
             val = self._eval(part, env, stmt.line)
@@ -208,7 +208,7 @@ class Interpreter:
         env.set(stmt.variable_name, user_input)
 
     # --- If ---
-    def _exec_if(self, stmt: ast.IfBlock, env: Environment):
+    def _exec_if(self, stmt: ast.IfBlock, env: Environment) -> None:
         if self._eval_condition(stmt.condition, env, stmt.line):
             for s in stmt.body:
                 self._exec(s, env)
@@ -224,7 +224,7 @@ class Interpreter:
             self._exec(s, env)
 
     # --- Repeat ---
-    def _exec_repeat(self, stmt: ast.RepeatLoop, env: Environment):
+    def _exec_repeat(self, stmt: ast.RepeatLoop, env: Environment) -> None:
         count = self._eval(stmt.count, env, stmt.line)
         if not isinstance(count, (int, float)):
             raise errors.type_mismatch_arithmetic(count, stmt.line)
@@ -233,7 +233,7 @@ class Interpreter:
                 self._exec(s, env)
 
     # --- While ---
-    def _exec_while(self, stmt: ast.WhileLoop, env: Environment):
+    def _exec_while(self, stmt: ast.WhileLoop, env: Environment) -> None:
         iteration_limit = 1_000_000
         i = 0
         while self._eval_condition(stmt.condition, env, stmt.line):
@@ -249,7 +249,7 @@ class Interpreter:
                 )
 
     # --- For each ---
-    def _exec_for_each(self, stmt: ast.ForEachLoop, env: Environment):
+    def _exec_for_each(self, stmt: ast.ForEachLoop, env: Environment) -> None:
         lst = env.get(stmt.list_name)
         if lst is _NO_RETURN:
             raise errors.undefined_variable(stmt.list_name, stmt.line)
@@ -268,7 +268,7 @@ class Interpreter:
         return self._call_function(stmt.name, stmt.args, env, stmt.line)
 
     # --- Add to list ---
-    def _exec_add_to_list(self, stmt: ast.AddToList, env: Environment):
+    def _exec_add_to_list(self, stmt: ast.AddToList, env: Environment) -> None:
         lst = env.get(stmt.list_name)
         if lst is _NO_RETURN:
             raise errors.undefined_variable(stmt.list_name, stmt.line)
@@ -281,7 +281,7 @@ class Interpreter:
         lst.append(value)
 
     # --- Remove from list ---
-    def _exec_remove_from_list(self, stmt: ast.RemoveFromList, env: Environment):
+    def _exec_remove_from_list(self, stmt: ast.RemoveFromList, env: Environment) -> None:
         lst = env.get(stmt.list_name)
         if lst is _NO_RETURN:
             raise errors.undefined_variable(stmt.list_name, stmt.line)
@@ -312,11 +312,13 @@ class Interpreter:
         if isinstance(node, ast.BooleanLiteral):
             return node.value
 
+        if isinstance(node, ast.StringLiteral):
+            return node.value
+
         if isinstance(node, ast.VariableRef):
             val = env.get(node.name)
             if val is _NO_RETURN:
-                # Treat as text literal (unquoted text)
-                return node.name
+                raise errors.undefined_variable(node.name, line)
             return val
 
         if isinstance(node, ast.BinaryOp):

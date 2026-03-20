@@ -350,7 +350,7 @@ Let age be 25.
 31. A **variable name** is one or more English words that are not reserved keywords.
 32. A **number literal** is a sequence of digit characters, optionally containing one period for decimals.
 33. A **boolean literal** is the word `true` or `false`.
-34. A **text literal** is any sequence of words not otherwise parsed as a keyword, variable, or number.
+34. A **string literal** is any sequence of words wrapped in double quotes (e.g. `"Hello world"`).
 35. A **use statement** begins with `Use` followed by a library name, and ends with a period.
 
 ---
@@ -363,8 +363,23 @@ Loads native Python functions from `libs/<library name>_lib.py`. These functions
 
 **Standard Libraries:**
 - **math:** `round`, `floor`, `ceiling`, `square root`, `power`, `absolute value`, `minimum`, `maximum`
-- **graphics:** Pygame-based drawing (`create window`, `draw rectangle`, `set colour`, etc.)
-- **input:** Pygame-based inputs (`check events`, `is key pressed`, `is mouse pressed`)
+- **graphics:** Window and drawing APIs (`create window`, `draw rectangle`, `set background`, `set colour`, `draw circle`, `update display`, `wait`, `close window`)
+- **input:** Hardware inputs (`check events`, `is key pressed`, `mouse position`, `is mouse pressed`)
+- **random:** Generators (`random integer`, `random decimal`, `random choice`)
+- **time:** Clock (`current time`, `current date`, `unix timestamp`, `sleep`)
+- **text:** String tools (`uppercase`, `lowercase`, `length of text`, `replace text`, `split text`)
+- **file:** I/O (`read file`, `write file`, `append file`, `file exists`)
+- **system:** Environment (`operating system`, `current directory`, `shell`)
+- **dictionary:** Key-Value Maps (`create dictionary`, `put in dictionary`, `get from dictionary`, `remove from dictionary`, `dictionary keys`)
+- **network:** Web requests (`fetch url`, `download file`)
+- **json:** Data serialization (`parse json`, `to json string`)
+- **type:** Dynamic casting (`type of`, `to text`, `to number`)
+- **regex:** Pattern matching (`regex match`, `regex search`, `regex replace`, `regex split`)
+- **csv:** Table processing (`read csv`, `write csv`)
+- **base64:** Data encoding (`base64 encode`, `base64 decode`)
+- **crypto:** Hashing routines (`md5 hash`, `sha256 hash`)
+- **dialog:** Native UI alerts and prompts (`show info`, `show error`, `ask yes no`, `ask string`)
+- **database:** SQLite relational databases (`connect to database`, `execute sql`, `fetch query`, `close database`)
 
 ---
 

@@ -10,6 +10,9 @@
             "include": "#comment"
         },
         {
+            "include": "#string"
+        },
+        {
             "include": "#block-end"
         },
         {
@@ -60,13 +63,24 @@
             "name": "keyword.other.plainenglish",
             "match": "(?i)\\b(Let|Set|to|be|then|times|repeat|in|that takes|with|and store it in|a list containing|an empty list|Give back|Call|Use)\\b"
         },
+        "string": {
+            "name": "string.quoted.double.plainenglish",
+            "begin": "\"",
+            "end": "\"",
+            "patterns": [
+                {
+                    "name": "constant.character.escape.plainenglish",
+                    "match": "\\\\."
+                }
+            ]
+        },
         "function-keyword": {
             "name": "keyword.declaration.plainenglish",
             "match": "(?i)\\b(Define a function called|End function|Give back|Call|the result of calling)\\b"
         },
         "io-keyword": {
             "name": "support.function.plainenglish",
-            "match": "(?i)\\b(Display|Ask|and store it in)\\b"
+            "match": "(?i)\\b(Display|Ask|and store it in|round|floor|ceiling|square root|power|absolute value|minimum|maximum|create window|set background|draw rectangle|draw circle|update display|wait|close window|set colour|check events|is key pressed|mouse position|is mouse pressed|random integer|random decimal|random choice|current time|current date|unix timestamp|sleep|uppercase|lowercase|length of text|replace text|split text|read file|write file|append file|file exists|operating system|current directory|shell|create dictionary|put in dictionary|get from dictionary|remove from dictionary|dictionary keys|fetch url|download file|parse json|to json string|type of|to text|to number|regex match|regex search|regex replace|regex split|read csv|write csv|base64 encode|base64 decode|md5 hash|sha256 hash|show info|show error|ask yes no|ask string|connect to database|execute sql|fetch query|close database)\\b"
         },
         "list-keyword": {
             "name": "support.type.plainenglish",

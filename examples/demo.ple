@@ -1,12 +1,14 @@
 Note Comprehensive demo of every PlainEnglish feature.
 
-Note Variables.
-Let name be PlainEnglish.
+Display "=========================".
+Display " Comprehensive Core Demo ".
+Display "=========================".
+Let name be "PlainEnglish".
 Let version be 1.
 Let pi be 3.14.
 Let ready be true.
 
-Display Welcome to name version.
+Display "Welcome to", name, version.
 
 Note Arithmetic.
 Let a be 10.
@@ -25,20 +27,20 @@ Display leftover.
 
 Note Conditions.
 If total is greater than 10, then.
-  Display The total is greater than 10.
+  Display "The total is greater than 10.".
 End if.
 
 If ready is true, then.
-  Display name is awesome.
+  Display name, "is awesome.".
 Otherwise.
-  Display name is not awesome.
+  Display name, "is not awesome.".
 End if.
 
 Note Counted loop.
 Let counter be 0.
 Repeat 5 times.
   Set counter to counter plus 1.
-  Display Iteration counter.
+  Display "Iteration", counter.
 End repeat.
 
 Note While loop.
@@ -47,12 +49,12 @@ While countdown is greater than 0, repeat.
   Display countdown.
   Set countdown to countdown minus 1.
 End while.
-Display Go.
+Display "Go.".
 
 Note Lists.
-Let colours be a list containing red, green, blue.
-Add purple to colours.
-Remove blue from colours.
+Let colours be a list containing "red", "green", "blue".
+Add "purple" to colours.
+Remove "blue" from colours.
 
 Display colours.
 For each colour in colours.
@@ -75,9 +77,9 @@ Set d to the result of calling double with 21.
 Display d.
 
 Define a function called greet that takes person.
-  Display Nice to meet you, person.
+  Display "Nice to meet you,", person.
 End function.
 
-Call greet with World.
+Call greet with "World".
 
-Display Demo complete.
+Display "Demo complete.".

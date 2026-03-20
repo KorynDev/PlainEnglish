@@ -1,0 +1,24 @@
+Use graphics.
+Use input.
+
+Call create window with 1280, 720.
+
+Let running be true.
+Let quit be false.
+
+Let x be 400.
+Let y be 300.
+
+While running is true, repeat.
+    Set quit to the result of calling check events.
+    If quit is true, then.
+        Set running to false.
+    End If.
+
+    Call set background with 30, 40, 40.
+
+    Call update display.
+    Call wait with 16.
+End while.
+
+Call close window.

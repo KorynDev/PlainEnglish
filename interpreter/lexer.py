@@ -22,6 +22,7 @@ def lex(source: str, filename: str = "<stdin>") -> List[Tuple[int, str]]:
     current_chars: list[str] = []
     start_line = 1
     current_line = 1
+    in_quotes = False
 
     i = 0
     length = len(source)
@@ -29,13 +30,22 @@ def lex(source: str, filename: str = "<stdin>") -> List[Tuple[int, str]]:
     while i < length:
         ch = source[i]
 
-        if ch == '\n':
-            current_line += 1
-            current_chars.append(' ')
+        if ch == '"':
+            in_quotes = not in_quotes
+            current_chars.append(ch)
             i += 1
             continue
 
-        if ch == '.':
+        if ch == '\n':
+            current_line += 1
+            if in_quotes:
+                current_chars.append('\n')
+            else:
+                current_chars.append(' ')
+            i += 1
+            continue
+
+        if ch == '.' and not in_quotes:
             # Check if this period is part of a decimal number.
             # Decimal: digit(s) before AND digit(s) after the period.
             if i > 0 and i + 1 < length and source[i - 1].isdigit() and source[i + 1].isdigit():

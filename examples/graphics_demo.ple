@@ -9,50 +9,59 @@ Let running be true.
 Let x be 400.
 Let y be 300.
 Let speed be 5.
+Let quit be false.
+Let is up pressed be false.
+Let is down pressed be false.
+Let is left pressed be false.
+Let is right pressed be false.
+Let pos be an empty list.
+Let mx be 0.
+Let my be 0.
+Let clicked be false.
 
 While running is true, repeat.
-  Note Check if the user clicked the window close button
+  Note Check if the user clicked the window close button.
   Set quit to the result of calling check events.
   If quit is true, then.
     Set running to false.
   End if.
 
-  Note Keyboard input for movement
-  Set up to the result of calling is key pressed with up.
-  If up is true, then.
+  Note Keyboard input for movement.
+  Set is up pressed to the result of calling is key pressed with "up".
+  If is up pressed is true, then.
     Set y to y minus speed.
   End if.
   
-  Set down to the result of calling is key pressed with down.
-  If down is true, then.
+  Set is down pressed to the result of calling is key pressed with "down".
+  If is down pressed is true, then.
     Set y to y plus speed.
   End if.
 
-  Set left to the result of calling is key pressed with left.
-  If left is true, then.
+  Set is left pressed to the result of calling is key pressed with "left".
+  If is left pressed is true, then.
     Set x to x minus speed.
   End if.
 
-  Set right to the result of calling is key pressed with right.
-  If right is true, then.
+  Set is right pressed to the result of calling is key pressed with "right".
+  If is right pressed is true, then.
     Set x to x plus speed.
   End if.
 
-  Note Drawing
+  Note Drawing.
   Call set background with 30, 30, 40.
   
-  Note Draw a red square at the current position
+  Note Draw a red square at the current position.
   Call set colour with 200, 50, 50.
   Call draw rectangle with x, y, 40, 40.
 
-  Note Draw a blue circle wherever the mouse is
+  Note Draw a blue circle wherever the mouse is.
   Set pos to the result of calling mouse position.
   Set mx to item 1 of pos.
   Set my to item 2 of pos.
   Call set colour with 50, 150, 200.
   Call draw circle with mx, my, 20.
 
-  Note Change circle color if mouse clicked
+  Note Change circle color if mouse clicked.
   Set clicked to the result of calling is mouse pressed.
   If clicked is true, then.
     Call set colour with 250, 200, 50.
@@ -64,4 +73,4 @@ While running is true, repeat.
 End while.
 
 Call close window.
-Display Graphics demo closed.
+Display "Graphics demo closed."

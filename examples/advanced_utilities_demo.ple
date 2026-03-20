@@ -1,0 +1,77 @@
+Note Advanced Utilities Testing.
+
+Display "=========================".
+Display "     Advanced Modules    ".
+Display "=========================".
+
+Use dictionary.
+Use network.
+Use json.
+Use type.
+Use regex.
+Use csv.
+Use base64.
+Use crypto.
+Use dialog.
+Use database.
+
+Display "=== Dictionary Test ===".
+Set m to the result of calling create dictionary.
+Call put in dictionary with m, "name", "Tyson".
+Call put in dictionary with m, "score", 100.
+Set n to the result of calling get from dictionary with m, "name".
+Display "Name from dictionary:", n.
+
+Display "".
+Display "=== Output Type Casting Test ===".
+Display "Type of n is:", the result of calling type of with n.
+
+Display "".
+Display "=== JSON & Network Test ===".
+Display "Fetching fake todo item...".
+Set raw to the result of calling fetch url with "https://jsonplaceholder.typicode.com/todos/1".
+Set parsed to the result of calling parse json with raw.
+Set title to the result of calling get from dictionary with parsed, "title".
+Display "The fetched task title is:", title.
+
+Display "".
+Display "=== Regex Test ===".
+Set email checks out to the result of calling regex match with ".*@.*\..*", "test@example.com".
+Display "Is test@example.com an email?", email checks out.
+
+Display "".
+Display "=== CSV Test ===".
+Set local_csv to "test_table.csv".
+Let row1 be a list containing "ID", "Name".
+Let row2 be a list containing 1, "Alice".
+Let table be a list containing row1, row2.
+Call write csv with local_csv, table.
+Set read_back to the result of calling read csv with local_csv.
+Display "CSV File Row 0:", item 1 of read_back.
+Display "CSV File Row 1:", item 2 of read_back.
+
+Display "".
+Display "=== Base64 & Crypto Test ===".
+Set secret to "Hello World".
+Set b64 to the result of calling base64 encode with secret.
+Display "Base64 encoded:", b64.
+Set md5 to the result of calling md5 hash with secret.
+Display "MD5 hash:", md5.
+Set sha to the result of calling sha256 hash with secret.
+Display "SHA-256 hash:", sha.
+
+Display "".
+Display "=== Database Test ===".
+Set db_file to "local_test.db".
+Set conn to the result of calling connect to database with db_file.
+Call execute sql with conn, "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, username TEXT)".
+Call execute sql with conn, "DELETE FROM users".
+Call execute sql with conn, "INSERT INTO users (username) VALUES ('Tyson')".
+Call execute sql with conn, "INSERT INTO users (username) VALUES ('Alice')".
+Set users to the result of calling fetch query with conn, "SELECT * FROM users".
+Display "Users from database:", users.
+Call close database with conn.
+
+Note Dialog test requires a GUI, so we will not block the automated test with Ask!.
+Display "".
+Display "All automated tests passed successfully.".

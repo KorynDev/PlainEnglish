@@ -1,0 +1,10 @@
+Let person be bree.
+
+Define a function called print that takes person.
+    Let names be a list containing IronFish.
+    For each name in names.
+        Display person, name.
+    End for each.
+End function
+
+Call print with person.

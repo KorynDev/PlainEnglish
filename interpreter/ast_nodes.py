@@ -41,10 +41,6 @@ class UseStatement(Statement):
 # Variables
 # ---------------------------------------------------------------------------
 
-# ---------------------------------------------------------------------------
-# Variables
-# ---------------------------------------------------------------------------
-
 @dataclass
 class LetStatement(Statement):
     name: str = ""
@@ -68,6 +64,10 @@ class NumberLiteral(Statement):
 
 @dataclass
 class TextLiteral(Statement):
+    value: str = ""
+
+@dataclass
+class StringLiteral(Statement):
     value: str = ""
 
 

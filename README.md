@@ -13,8 +13,8 @@ PlainEnglish is a beginner-friendly, imperative programming language where every
 Create a file called `hello.ple`:
 
 ```
-Let name be World.
-Display Hello, name.
+Let name be "World".
+Display "Hello,", name.
 ```
 
 ### 2. Run It
@@ -45,10 +45,10 @@ Hello, World
 | **Counted loops** | `Repeat 10 times.` |
 | **While loops** | `While running is true, repeat.` |
 | **For-each loops** | `For each item in list.` |
-| **Input** | `Ask What is your name and store it in name.` |
-| **Output** | `Display Hello, name.` |
+| **Input** | `Ask "What is your name?" and store it in name.` |
+| **Output** | `Display "Hello,", name.` |
 | **Functions** | `Define a function called greet that takes person.` |
-| **Lists** | `Let colours be a list containing red, green, blue.` |
+| **Lists** | `Let colours be a list containing "red", "green", "blue".` |
 | **Libraries** | `Use math.` |
 
 ---
@@ -93,6 +93,21 @@ PlainEnglish/
     math_lib.py
     graphics_lib.py
     input_lib.py
+    random_lib.py
+    time_lib.py
+    text_lib.py
+    file_lib.py
+    system_lib.py
+    dictionary_lib.py
+    network_lib.py
+    json_lib.py
+    type_lib.py
+    regex_lib.py
+    csv_lib.py
+    base64_lib.py
+    crypto_lib.py
+    dialog_lib.py
+    database_lib.py
   spec/
     SPECIFICATION.md       Full language specification
   docs/
