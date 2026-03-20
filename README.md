@@ -4,6 +4,13 @@
 
 PlainEnglish is a beginner-friendly, imperative programming language where every statement reads as a natural English sentence. Source files use the `.ple` extension and contain **only** English words, spaces, commas, and periods — no brackets, braces, operators, or special characters.
 
+# 🛡️ Naming and Branding
+
+The name "PlainEnglish" refers to the original project created by Koryn.
+
+You are free to use, modify, and distribute the code under the MIT License.
+However, you may not use the name "PlainEnglish" for forks, derivatives, or commercial products without permission.
+
 ---
 
 ## Quick Start
